@@ -7,6 +7,7 @@ RUN add-apt-repository 'deb http://mirrors.syringanetworks.net/mariadb/repo/10.0
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen
+RUN sed -i -r 's/bind-address.*$/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 
 ADD create_mariadb_admin_user.sh /create_mariadb_admin_user.sh
 ADD run.sh /run.sh

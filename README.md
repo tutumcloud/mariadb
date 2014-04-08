@@ -1,5 +1,5 @@
 tutum-docker-mariadb
-=======================
+====================
 
 Base docker image to run a MariaDB database server
 
@@ -44,16 +44,4 @@ Setting a specific password for the admin account
 If you want to use a preset password instead of a random generated one, you can
 set the environment variable `MARIADB_PASS` to your specific password when running the container:
 
-        docker run -d -p 3306:3306 -e MARIADB_PASS="mypass" tutum/maria
-
-
-Mounting the database file volume
----------------------------------
-
-Coming soon!
-
-
-Migrating an existing MariaDB Server
-----------------------------------
-
-Coming soon!
+        docker run -d -p 3306:3306 -e MARIADB_PASS="mypass" tutum/mariadb

@@ -7,4 +7,4 @@ if [ ! -f /.maria_admin_created ]; then
         /create_mariadb_admin_user.sh
 fi
 
-mysqld_safe 
+exec mysqld_safe 

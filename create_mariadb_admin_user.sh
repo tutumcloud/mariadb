@@ -22,7 +22,7 @@ mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 mysqladmin -uroot shutdown
 
 echo "=> Done!"
-touch /.mysql_admin_created
+touch /.maria_admin_created
 
 echo "========================================================================"
 echo "You can now connect to this MariaDB Server using:"
