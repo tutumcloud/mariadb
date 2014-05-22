@@ -5,6 +5,9 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen
 
+# Remove pre-installed database
+RUN rm -rf /var/lib/mysql/*
+
 #change bind address to 0.0.0.0
 RUN sed -i -r 's/bind-address.*$/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
 

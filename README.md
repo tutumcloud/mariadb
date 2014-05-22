@@ -4,6 +4,12 @@ tutum-docker-mariadb
 Base docker image to run a MariaDB database server
 
 
+MariaDB version
+---------------
+`master` branch maintains MariaDB from Ubuntu trusty official source. If you want to get different version of Mariad, please checkout `5.5` branch and `10.0` branch.
+
+If you want to use MySQL, please check our `tutum/mysql` image: https://github.com/tutumcloud/tutum-docker-mysql
+
 Usage
 -----
 
@@ -45,3 +51,19 @@ If you want to use a preset password instead of a random generated one, you can
 set the environment variable `MARIADB_PASS` to your specific password when running the container:
 
         docker run -d -p 3306:3306 -e MARIADB_PASS="mypass" tutum/mariadb
+
+
+Mounting the database file volume from other containers
+------------------------------------------------------
+
+One way to persist the database data is to store database files in another container.
+To do so, first create a container that holds database files:
+
+    docker run -d -v /var/lib/mysql --name db_vol -p 22:22 tutum/ubuntu-trusty 
+
+This will create a new ssh-enabled container and use its folder `/var/lib/mysql` to store MariaDB database files. 
+You can specify any name of the container by using `--name` option, which will be used in next step.
+
+After this you can start your MariaDB image using volumes in the container created above (put the name of container in `--volumes-from`)
+
+    docker run -d --volumes-from db_vol -p 3306:3306 tutum/mariadb 
