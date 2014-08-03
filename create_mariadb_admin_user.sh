@@ -23,7 +23,11 @@ echo "=> Done!"
 echo "========================================================================"
 echo "You can now connect to this MariaDB Server using:"
 echo ""
-echo "    mysql -uadmin -p$PASS -h<host> -P<port>"
+if [ $MARIADB_PASS ]; then
+    echo "    mysql -uadmin -p<MARIADB_PASS> -h$(hostname -I) -P<port>"
+else
+    echo "    mysql -uadmin -p$PASS -h$(hostname -I) -P<port>"
+fi
 echo ""
 echo "Please remember to change the above password as soon as possible!"
 echo "MariaDB user 'root' has no password but only allows local connections"
