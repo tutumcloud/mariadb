@@ -6,7 +6,6 @@ Base docker image to run a MariaDB database server
 
 MariaDB version
 ---------------
-`master` branch maintains MariaDB from Ubuntu trusty official source. If you want to get different version of Mariad, please checkout `5.5` branch and `10.0` branch.
 
 If you want to use MySQL, please check our `tutum/mysql` image: https://github.com/tutumcloud/tutum-docker-mysql
 

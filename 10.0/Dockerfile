@@ -2,6 +2,10 @@ FROM ubuntu:trusty
 MAINTAINER FENG, HONGLIN <hfeng@tutum.co>
 
 RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
+RUN add-apt-repository 'deb http://mirrors.syringanetworks.net/mariadb/repo/10.0/ubuntu saucy main'
+RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen
 
