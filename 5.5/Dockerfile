@@ -1,16 +1,14 @@
 FROM ubuntu:trusty
 MAINTAINER FENG, HONGLIN <hfeng@tutum.co>
 
-RUN apt-get update
-RUN apt-get install -y software-properties-common
-RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
-RUN add-apt-repository 'deb http://mirrors.syringanetworks.net/mariadb/repo/5.5/ubuntu saucy main'
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen
-
-# Remove pre-installed database
-RUN rm -rf /var/lib/mysql/*
+RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db && \
+    echo 'deb http://mirrors.syringanetworks.net/mariadb/repo/5.5/ubuntu trusty main' >> /etc/apt/sources.list && \
+    echo 'deb-src http://mirrors.syringanetworks.net/mariadb/repo/5.5/ubuntu trusty main' >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y mariadb-server pwgen && \
+    rm -rf /var/lib/mysql/* && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 #change bind address to 0.0.0.0
 RUN sed -i -r 's/bind-address.*$/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
