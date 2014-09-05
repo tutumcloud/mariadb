@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+dependencies:
+  override:
+    - docker build -t mariadb-5.5 5.5/
+    - docker build -t mariadb-10.0 10.0/
+test:
+  override:
+    - docker run -d -p 13306:3306 -e MARIADB_PASS="mypass" mariadb-5.5; sleep 20
+    - mysqladmin -uadmin -pmypass -h127.0.0.1 -P13306 | grep -c "mysqld is alive"
+    - docker run -d -p 13306:3306 -e MARIADB_PASS="mypass" mariadb-10.0; sleep 20
+    - mysqladmin -uadmin -pmypass -h127.0.0.1 -P13306 | grep -c "mysqld is alive"
