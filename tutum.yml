@@ -1,0 +1,6 @@
+mariadb:
+  image: tutum/mariadb
+  ports:
+    - 3306:3306
+  environment:
+    - MARIADB_PASS="**ChangeMe**"
