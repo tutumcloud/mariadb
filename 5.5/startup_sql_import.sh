@@ -1,12 +1,3 @@
-# Import Startup SQL
-if [ -n "${STARTUP_SQL}" ]; then
-    if [ ! -f /sql_imported ]; then
-        echo "=> Initializing DB with ${STARTUP_SQL}"
-        ImportSql
-        touch /sql_imported
-    fi
-fi
-
 ImportSql ()
 {
   for FILE in ${STARTUP_SQL}; do
@@ -18,3 +9,12 @@ ImportSql ()
       fi
   done
 }
+
+# Import Startup SQL
+if [ -n "${STARTUP_SQL}" ]; then
+    if [ ! -f /sql_imported ]; then
+        echo "=> Initializing DB with ${STARTUP_SQL}"
+        ImportSql
+        touch /sql_imported
+    fi
+fi
