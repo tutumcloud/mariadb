@@ -52,6 +52,7 @@ Environment variables can be used to preset admin account username & password,
 import SQL and create a database at startup.
 
 The following environment variables can be used:
+
         MARIADB_USER - Sets the admin account username (defaults to 'admin')
         MARIADB_PASS - Sets the admin account password (defaults to random string, see docker logs <CONTAINER_ID>)
         STARTUP_SQL  - SQL to import at startup (needs to exist, can be mounted)
